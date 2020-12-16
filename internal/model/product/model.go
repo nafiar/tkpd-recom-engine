@@ -4,7 +4,7 @@ package product
 type Data struct {
 	ID   int
 	Name string
-	Price  int
+	Price  float64
 }
 
 // Param store Product model data

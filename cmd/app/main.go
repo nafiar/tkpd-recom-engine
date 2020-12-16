@@ -33,7 +33,7 @@ func main() {
 
 	dbPostgre,err := postgreConn.NewConnection()
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 	productRepo := postgreProductRepo.New(dbPostgre)
 
