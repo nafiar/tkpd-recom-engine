@@ -1,7 +1,8 @@
 package config
 
 type Config struct {
-	Redis map[string]*RedisCfg
+	Redis   map[string]*RedisCfg
+	Postgre map[string]*PostgreCfg
 }
 
 type (
@@ -9,5 +10,9 @@ type (
 		Connection string
 		MaxActive  int
 		MaxIdle    int
+	}
+
+	PostgreCfg struct {
+		ConnString string
 	}
 )

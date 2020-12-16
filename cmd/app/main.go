@@ -31,7 +31,7 @@ func main() {
 		MaxIdle:   cfg.Redis["user_data"].MaxIdle,
 	})
 
-	dbPostgre,err := postgreConn.NewConnection()
+	dbPostgre,err := postgreConn.NewConnection(cfg.Postgre["product_recommendation"].ConnString)
 	if err != nil {
 		log.Fatal(err)
 	}
