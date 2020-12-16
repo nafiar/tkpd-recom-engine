@@ -30,6 +30,15 @@ func main() {
 
 	userInfoRepo := redisUserInfoRepo.New(redisUserInfo)
 	userDataInfoUC := userDataInfoUC.New(userInfoRepo)
+
+	// redisRecentView := redis.NewConnection(redis.ConnectionConfig{
+	// 	Address:   cfg.Redis["recent_view"].Connection,
+	// 	MaxActive: cfg.Redis["recent_view"].MaxActive,
+	// 	MaxIdle:   cfg.Redis["recent_view"].MaxIdle,
+	// })
+	// recentViewRepo := redisRecentViewRepo.New(redisRecentView)
+	// recentViewUC := recentViewUC.New(recentViewRepo)
+
 	api := apiDelivery.New(userDataInfoUC)
 	api.Serve()
 }

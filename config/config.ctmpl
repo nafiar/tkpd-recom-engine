@@ -1,4 +1,9 @@
 [Redis "user_data"]
     connection = "127.0.0.1:6379"
     maxActive = 1500
-    maxIdle = 150    
+    maxIdle = 150
+
+[Redis "recent_view"]
+     connection = "127.0.0.1:6379"
+     maxActive = 1500
+     maxIdle = 150
