@@ -1,4 +1,10 @@
 [Redis "user_data"]
     connection = "127.0.0.1:6379"
     maxActive = 1500
-    maxIdle = 150    
+    maxIdle = 150
+[NSQ "activity_view_stream"]
+    channelName = "recommendation_generator"
+    maxInFlight = 100
+    NSQLookupd =  "127.0.0.1:4161"
+    topic = "activity_view_stream"
+    worker = 1

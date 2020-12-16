@@ -3,6 +3,9 @@ module github.com/nafiar/tkpd-recom-engine
 go 1.14
 
 require (
+	github.com/gomodule/redigo v1.8.3
 	github.com/json-iterator/go v1.1.10
 	github.com/nsqio/go-nsq v1.0.8
+	gopkg.in/gcfg.v1 v1.2.3
+	gopkg.in/warnings.v0 v0.1.2 // indirect
 )

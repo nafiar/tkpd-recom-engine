@@ -11,7 +11,7 @@ import (
 )
 
 type viewHandler struct {
-	usecase recentview.Usecase
+	recentViewUsecase recentview.Usecase
 }
 
 type ViewMessage struct {
@@ -21,7 +21,7 @@ type ViewMessage struct {
 }
 
 func (h *viewHandler) HandleMessage(message *nsq.Message) error {
-	if h.usecase == nil {
+	if h.recentViewUsecase == nil {
 		message.Requeue(0)
 		return nil
 	}
@@ -31,7 +31,7 @@ func (h *viewHandler) HandleMessage(message *nsq.Message) error {
 		return nil
 	}
 
-	h.usecase.Handle(context.Background(), parsedMsg)
+	h.recentViewUsecase.Handle(context.Background(), parsedMsg)
 
 	return nil
 }

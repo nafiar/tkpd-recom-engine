@@ -35,7 +35,7 @@ func NewViewListener(usecase recentview.Usecase, listenerConfig ListenerConfig) 
 	}
 
 	handler := &viewHandler{
-		usecase: usecase,
+		recentViewUsecase: usecase,
 	}
 
 	consumer.AddConcurrentHandlers(handler, listenerConfig.Worker)
