@@ -1,17 +1,17 @@
 package nsq
 
 import (
-	"context"
 	"encoding/json"
 	"time"
 
 	nsq "github.com/nsqio/go-nsq"
 
+	recentViewUC "github.com/nafiar/tkpd-recom-engine/internal/app/usecase/recentview"
 	"github.com/nafiar/tkpd-recom-engine/internal/background/usecase/recentview"
 )
 
 type viewHandler struct {
-	usecase recentview.Usecase
+	recentViewUC recentViewUC.UseCase
 }
 
 type ViewMessage struct {
@@ -21,17 +21,16 @@ type ViewMessage struct {
 }
 
 func (h *viewHandler) HandleMessage(message *nsq.Message) error {
-	if h.usecase == nil {
+	if h.recentViewUC == nil {
 		message.Requeue(0)
 		return nil
 	}
-	parsedMsg, ok := parseAndValidateView(message.Body)
-	if !ok {
-		message.Finish()
-		return nil
-	}
-
-	h.usecase.Handle(context.Background(), parsedMsg)
+	h.recentViewUC.SetRecentView(message.Body)
+	// parsedMsg, ok := parseAndValidateView(message.Body)
+	// if !ok {
+	// 	message.Finish()
+	// 	return nil
+	// }
 
 	return nil
 }
