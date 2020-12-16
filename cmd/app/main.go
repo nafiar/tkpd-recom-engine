@@ -5,10 +5,13 @@ import (
 	"log"
 
 	"github.com/nafiar/tkpd-recom-engine/common/config"
+	postgreConn "github.com/nafiar/tkpd-recom-engine/common/postgres"
 	"github.com/nafiar/tkpd-recom-engine/common/redis"
 	apiDelivery "github.com/nafiar/tkpd-recom-engine/internal/app/delivery/web/api"
 	redisUserInfoRepo "github.com/nafiar/tkpd-recom-engine/internal/app/repository/userinfo/redis"
+	postgreProductRepo "github.com/nafiar/tkpd-recom-engine/internal/app/repository/product/postgres"
 	userDataInfoUC "github.com/nafiar/tkpd-recom-engine/internal/app/usecase/userdata/info"
+	"github.com/nafiar/tkpd-recom-engine/internal/model/product"
 )
 
 func main() {
@@ -28,6 +31,16 @@ func main() {
 		MaxIdle:   cfg.Redis["user_data"].MaxIdle,
 	})
 
+	dbPostgre,err := postgreConn.NewConnection()
+	if err != nil {
+		log.Println(err)
+	}
+	productRepo := postgreProductRepo.New(dbPostgre)
+
+	productSample, _ := productRepo.GetProduct([]product.Param{})
+	log.Println(productSample)
+
+	//productRepo.GetProduct(nil)
 	userInfoRepo := redisUserInfoRepo.New(redisUserInfo)
 	userDataInfoUC := userDataInfoUC.New(userInfoRepo)
 	api := apiDelivery.New(userDataInfoUC)
