@@ -11,6 +11,9 @@
     worker = 1
 
 [Redis "recent_view"]
-     connection = "127.0.0.1:6379"
-     maxActive = 1500
-     maxIdle = 150
+    connection = "127.0.0.1:6379"
+    maxActive = 1500
+    maxIdle = 150
+
+[Postgre "product_recommendation"]
+    ConnString = "postgres://root:root12345@localhost:5432/tokopedia-product-recommendation?sslmode=disable"
