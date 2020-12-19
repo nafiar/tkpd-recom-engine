@@ -23,7 +23,7 @@ type ListenerConfig struct {
 // New create new object for nsq view listener
 // intentionally removed consumer initialization
 // reference : NSQ Slide 14 `Creating a new listener`
-func New(usecase useractivity.Usecase, listenerConfig ListenerConfig) (view_delivery.Delivery, error) {
+func New(usecase useractivity.UseCase, listenerConfig ListenerConfig) (view_delivery.Delivery, error) {
 	return &viewListener{
 		lookupdAddress: listenerConfig.NSQLookupd,
 		consumer:       nil,

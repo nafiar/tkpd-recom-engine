@@ -4,13 +4,7 @@ import (
 	"context"
 	"log"
 	"strings"
-
-	"github.com/nafiar/tkpd-recom-engine/internal/background/usecase/useractivity"
 )
-
-type viewHandler struct {
-	useractivityUsecase useractivity.Usecase
-}
 
 // Run will open NSQ consummer connection and start consuming data
 // initially it will Split lookupaddress into list

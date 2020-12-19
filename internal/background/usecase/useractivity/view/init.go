@@ -10,7 +10,7 @@ type viewUserActivity struct {
 }
 
 // New create new object for user activity view handler
-func New(recentViewRepo recentView.Repository) useractivity.Usecase {
+func New(recentViewRepo recentView.Repository) useractivity.UseCase {
 	return &viewUserActivity{
 		recentViewRepo: recentViewRepo,
 	}

@@ -4,7 +4,7 @@ import (
 	"github.com/nsqio/go-nsq"
 )
 
-// Usecase represent recent view business logic
-type Usecase interface {
+// UseCase represent recent view business logic
+type UseCase interface {
 	HandleMessage(msg *nsq.Message) error
 }
