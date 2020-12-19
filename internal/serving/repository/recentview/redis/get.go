@@ -3,12 +3,23 @@ package redis
 import (
 	"log"
 	"strconv"
+
+	"github.com/gomodule/redigo/redis"
 )
 
 // GetRecentView get recent view activity data from redis
 // intentionally remove it's implementation
 // reference : slide redis `Get recent view data`
 func (r *redisRecentView) GetRecentView(userID int) (result []int, err error) {
+	redisConn := r.redisPool.Get()
+	defer redisConn.Close()
+	redisKey := RECENT_VIEW_KEY + strconv.Itoa(userID)
+	tmpResult, err := redis.Strings(redisConn.Do("LRANGE", redisKey, 0, 0))
+	if err != nil {
+		return
+	}
+	result = AtoiArray(tmpResult)
+
 	return
 }
 
