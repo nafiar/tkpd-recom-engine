@@ -35,3 +35,5 @@
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,go
 cmd/app/app
+cmd/background/background
+cmd/serving/serving
