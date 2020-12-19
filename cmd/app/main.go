@@ -28,6 +28,7 @@ func main() {
 		MaxIdle:   cfg.Redis["user_data"].MaxIdle,
 	})
 
+	// initialize repository, usecase & delivery
 	userInfoRepo := redisUserInfoRepo.New(redisUserInfo)
 	userDataInfoUC := userDataInfoUC.New(userInfoRepo)
 	api := apiDelivery.New(userDataInfoUC)

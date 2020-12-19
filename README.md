@@ -12,8 +12,21 @@ The Tokopedia Way : Building Scalable Recommendation Engine.
 
 ## Setup
 
+```sh
+go mod tidy
+go mod vendor
+```
+
 
 ## Scripts
 
+| `make <script>`       | Description                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| `build_app`           | To build simple app                                             |
+| `run_app`             | To run simple app                                               |
+| `build_background`    | To build background process app                                 |
+| `run_background`      | To run background process app                                   |
+| `build_serving`       | To build serving layer app                                      |
+| `run_serving`         | To run serving layer app                                        |
 
 ---

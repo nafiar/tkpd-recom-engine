@@ -1,8 +1,9 @@
 package config
 
 type Config struct {
-	Redis map[string]*RedisCfg
-	NSQ   map[string]*NSQCfg
+	Redis   map[string]*RedisCfg
+	NSQ     map[string]*NSQCfg
+	Postgre map[string]*PostgreCfg
 }
 
 type (
@@ -18,5 +19,9 @@ type (
 		NSQLookupd  string
 		Topic       string
 		Worker      int
+	}
+
+	PostgreCfg struct {
+		ConnString string
 	}
 )
