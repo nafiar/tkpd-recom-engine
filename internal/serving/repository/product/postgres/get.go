@@ -41,6 +41,36 @@ func (p *postgreProductInfo) GetProduct(param []m.Param) (result []m.Data, err e
 // intentionally remove it's implementation
 // reference : slide postgre `Process Query` & `Scan Data`
 func (p *postgreProductInfo) GetProductByIDs(ids []int) (result []m.Data, err error) {
+	query := `select id, name, price from public.product where id in ` + generateListStmt(ids)
+	ctx := context.Background()
+	args := make([]interface{}, len(ids))
+	for i := range ids {
+		args[i] = ids[i]
+	}
+
+	rows, err := p.dbCon.QueryContext(ctx, query, args...)
+	if err != nil {
+		log.Printf("[getData] err executing scan : %+v\n", err)
+		return
+	}
+
+	for rows.Next() {
+		var id int
+		var name string
+		var price float64
+
+		err = rows.Scan(&id, &name, &price)
+		if err != nil {
+			log.Printf("[getData] err executing scan : %+v\n", err)
+		}
+
+		result = append(result, m.Data{
+			ID:    id,
+			Name:  name,
+			Price: price,
+		})
+	}
+
 	return
 }
 
