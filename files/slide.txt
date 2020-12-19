@@ -1,0 +1,35 @@
+# Find any text files, I’m using sample.txt
+# Run this command
+bin/to_nsq --nsqd-tcp-address=127.0.0.1:4150 --topic=test < sample.txt
+# Check in NSQ Admin, ada topic baru, 
+# Check the depth
+# Check channel, there should be no consumers
+
+
+# Lookup any file, in this example I use sample.txt
+# run this command:
+bin/nsq_tail --topic=test --lookupd-http-address=127.0.0.1:4161 --channel=test_channel
+
+# check the output 
+# check nsq admin, check depth, see consumer(s) 
+# try to send again
+
+
+
+# Make sure you’ve had installed go 
+go version
+
+# Try to create this project structure inside GOPATH
+# 
+# learn_nsq/
+#   |- main.go
+#   |- handler.go
+
+
+mkdir -p go/src/github.com/[your user id]/learn_nsq
+cd -p go/src/github.com/[your user id]/learn_nsq
+
+# Open with IDE, lets code
+
+
+
