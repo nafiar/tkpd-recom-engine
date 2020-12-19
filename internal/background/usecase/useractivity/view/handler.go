@@ -24,7 +24,10 @@ func (v *viewUserActivity) HandleMessage(message *nsq.Message) error {
 		return nil
 	}
 
-	log.Printf("parsedMsg : %+v", parsedMsg)
+	err := v.recentViewRepo.SetRecentView(parsedMsg.UserID, []int{parsedMsg.ProductID})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
